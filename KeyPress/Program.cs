@@ -1,9 +1,9 @@
 ﻿using InputActions.Data;
 using InputActions.InputCollectors.Collectors;
 using InputActions.InputCollectors.Interface;
-using InputActions.InputPerformers.Interface;
-using InputActions.InputPerformers.Performers;
-using KeyPress.KeyActions.Data;
+using InputActions.InputPerformers;
+using InputActions.InputStrategies.ConsoleInput;
+using InputActions.InputStrategies.Interface;
 using System;
 
 namespace KeyPress
@@ -12,13 +12,20 @@ namespace KeyPress
     {
         static void Main(string[] args)
         {
-            
-            // IInputCollector inputCollector = new ConsoleInputCollector();
+            ConsoleInput(); 
+        }
+
+        public static void ConsoleInput()
+        {
+            // Collect inputs 
             IInputCollector inputCollector = new ConsoleInputCollectorWithDelays();
             InputQueue inputs = inputCollector.GenerateInputs();
-            IInputAction inputAction = new InputToKeyboard();
-            Console.WriteLine("--Writing Input From Keyboard to Keyboard--"); 
-            inputAction.PeformInputs(inputs); 
+
+            // Perform the inputs
+            IInputStrategyFactory inputStrategyFactory = new ConsoleInputStrategyFactory();
+            InputAction inputAction = new InputAction(inputStrategyFactory);
+            Console.WriteLine("--Writing Input From Keyboard to Keyboard--");
+            inputAction.PeformInputs(inputs);
         }
     }
 }

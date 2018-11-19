@@ -51,7 +51,12 @@
     <Compile Include="InputCollectors\Interface\IInputCollector.cs" />
     <Compile Include="InputCollectors\Collectors\ConsoleInputCollector.cs" />
     <Compile Include="InputPerformers\Interface\IInputAction.cs" />
-    <Compile Include="InputPerformers\Performers\InputToKeyboard.cs" />
+    <Compile Include="InputPerformers\InputAction.cs" />
+    <Compile Include="InputStrategies\ConsoleInput\ConsoleDownInputStrategy.cs" />
+    <Compile Include="InputStrategies\ConsoleInput\ConsoleInputStrategyFactory.cs" />
+    <Compile Include="InputStrategies\Exception\InputStrategyNotFoundException.cs" />
+    <Compile Include="InputStrategies\Interface\IInputStrategy.cs" />
+    <Compile Include="InputStrategies\Interface\IInputStrategyFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

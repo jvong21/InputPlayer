@@ -1,7 +1,7 @@
 ﻿using InputActions.Data;
 namespace InputActions.InputPerformers.Interface
 {
-    public interface IInputAction
+    internal interface IInputAction
     {
         void PeformInputs(InputQueue inputs);
     }
