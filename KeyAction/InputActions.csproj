@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{642C6B51-288A-4346-9432-C5B0DD56D53C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>KeyPress</RootNamespace>
-    <AssemblyName>KeyPress</AssemblyName>
+    <ProjectGuid>{B8DF0CCE-FFC7-46C2-88C9-90E28B7D7771}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InputActions</RootNamespace>
+    <AssemblyName>InputActions</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,17 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Data\Input.cs" />
+    <Compile Include="Data\InputQueue.cs" />
+    <Compile Include="InputCollectors\Collectors\ConsoleInputCollectorWithDelay.cs" />
+    <Compile Include="InputCollectors\Interface\IInputCollector.cs" />
+    <Compile Include="InputCollectors\Collectors\ConsoleInputCollector.cs" />
+    <Compile Include="InputPerformers\Interface\IInputAction.cs" />
+    <Compile Include="InputPerformers\Performers\InputToKeyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KeyAction\InputActions.csproj">
-      <Project>{b8df0cce-ffc7-46c2-88c9-90e28b7d7771}</Project>
-      <Name>InputActions</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

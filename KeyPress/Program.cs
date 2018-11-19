@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InputActions.Data;
+using InputActions.InputCollectors.Collectors;
+using InputActions.InputCollectors.Interface;
+using InputActions.InputPerformers.Interface;
+using InputActions.InputPerformers.Performers;
+using KeyPress.KeyActions.Data;
+using System;
 
 namespace KeyPress
 {
@@ -10,6 +12,13 @@ namespace KeyPress
     {
         static void Main(string[] args)
         {
+            
+            // IInputCollector inputCollector = new ConsoleInputCollector();
+            IInputCollector inputCollector = new ConsoleInputCollectorWithDelays();
+            InputQueue inputs = inputCollector.GenerateInputs();
+            IInputAction inputAction = new InputToKeyboard();
+            Console.WriteLine("--Writing Input From Keyboard to Keyboard--"); 
+            inputAction.PeformInputs(inputs); 
         }
     }
 }
