@@ -1,6 +1,6 @@
 ﻿using InputActions.Data;
+using InputActions.Data.Interface;
 using InputActions.InputCollectors.Interface;
-using KeyPress.KeyActions.Data;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +12,7 @@ namespace InputActions.InputCollectors.Collectors
         {
             string inputString = ReadString();
             IList<string> inputsWithDelays = GenerateInputListWithDelays(inputString); 
-            Queue<Input> inputQueue = BuildInputQueue(inputsWithDelays);
+            Queue<IInput> inputQueue = BuildInputQueue(inputsWithDelays);
             InputQueue finalInputQueue = new InputQueue(inputQueue);
             return finalInputQueue;
         }
@@ -34,16 +34,16 @@ namespace InputActions.InputCollectors.Collectors
             return inputs; 
         }
 
-        private Queue<Input> BuildInputQueue(IList<string> inputs)
+        private Queue<IInput> BuildInputQueue(IList<string> inputs)
         {
             try
             {
-                Queue<Input> finalInputQueue = new Queue<Input>();
+                Queue<IInput> finalInputQueue = new Queue<IInput>();
                 for (int i = 0; i < inputs.Count; i++)
                 {
                     string[] inputAndDelay = inputs[i].Split('-');
                     int delay = int.Parse(inputAndDelay[1]); 
-                    finalInputQueue.Enqueue(Input.GenerateInputWithDelayInMilliseconds(inputAndDelay[0], delay));
+                    finalInputQueue.Enqueue(new InputDown(inputAndDelay[0], delay));
                 }
 
                 return finalInputQueue;

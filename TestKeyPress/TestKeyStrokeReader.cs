@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using KeyPress.KeyActions.Data;
 using InputActions.InputCollectors.Interface;
 using InputActions.Data;
 using System.Collections.Generic;
+using InputActions.Data.Interface;
 
 namespace TestKeyAction
 {
@@ -40,17 +40,17 @@ namespace TestKeyAction
 
             public InputQueue GenerateInputs()
             {
-                Queue<Input> inputs = GenerateDummyInputs();
+                Queue<IInput> inputs = GenerateDummyInputs();
                 InputQueue inputQueue = new InputQueue(inputs);
                 return inputQueue;
             }
 
-            private Queue<Input> GenerateDummyInputs()
+            private Queue<IInput> GenerateDummyInputs()
             {
-                Queue<Input> dummyInputs = new Queue<Input>();
+                Queue<IInput> dummyInputs = new Queue<IInput>();
                 for(int i = 1; i <= numberOfDummyInputs; i++)
                 {
-                    Input inputA = Input.GenerateInput("A");
+                    IInput inputA = new InputDown("A", 0);
                     dummyInputs.Enqueue(inputA); 
                 }
                 return dummyInputs;

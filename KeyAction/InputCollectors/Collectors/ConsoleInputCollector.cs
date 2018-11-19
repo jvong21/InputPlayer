@@ -1,4 +1,5 @@
 ﻿using InputActions.Data;
+using InputActions.Data.Interface;
 using InputActions.InputCollectors.Interface;
 using KeyPress.KeyActions.Data;
 using System;
@@ -11,7 +12,7 @@ namespace InputActions.InputCollectors.Collectors
         public InputQueue GenerateInputs()
         {
             string inputString = ReadString();
-            Queue<Input> inputQueue = BuildInputStack(inputString);
+            Queue<IInput> inputQueue = BuildInputStack(inputString);
             InputQueue finalInputQueue = new InputQueue(inputQueue); 
             return finalInputQueue; 
         }
@@ -23,14 +24,14 @@ namespace InputActions.InputCollectors.Collectors
             return input;
         }
 
-        private Queue<Input> BuildInputStack(string input)
+        private Queue<IInput> BuildInputStack(string input)
         {
             try
             {
-                Queue<Input> finalInputQueue = new Queue<Input>(); 
+                Queue<IInput> finalInputQueue = new Queue<IInput>(); 
                 for (int i = 0; i < input.Length; i++)
                 {
-                    finalInputQueue.Enqueue(Input.GenerateInput(input.Substring(i, 1))); 
+                    finalInputQueue.Enqueue(new InputDown(input.Substring(i, 1), 0)); 
                 }
 
                 return finalInputQueue; 

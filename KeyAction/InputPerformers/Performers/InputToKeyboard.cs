@@ -6,13 +6,14 @@ using System.Windows.Forms;
 using System.Timers;
 using System;
 using System.Threading.Tasks;
+using InputActions.Data.Interface;
 
 namespace InputActions.InputPerformers.Performers
 {
     public class InputToKeyboard : IInputAction
     {
 
-        private Input currentInput;
+        private IInput currentInput;
 
         public void PeformInputs(InputQueue inputs)
         {

@@ -42,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Input.cs" />
+    <Compile Include="Data\InputDown.cs" />
+    <Compile Include="Data\InputUp.cs" />
+    <Compile Include="Data\Interface\IInput.cs" />
+    <Compile Include="Data\Interface\Input.cs" />
     <Compile Include="Data\InputQueue.cs" />
     <Compile Include="InputCollectors\Collectors\ConsoleInputCollectorWithDelay.cs" />
     <Compile Include="InputCollectors\Interface\IInputCollector.cs" />
