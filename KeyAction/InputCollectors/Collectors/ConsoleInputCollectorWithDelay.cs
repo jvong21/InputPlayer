@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace InputActions.InputCollectors.Collectors
 {
-    public class ConsoleInputCollectorWithDelays : IInputCollector
+    public class ConsoleInputDownCollectorWithDelays : IInputCollector
     {
         public InputQueue GenerateInputs()
         {

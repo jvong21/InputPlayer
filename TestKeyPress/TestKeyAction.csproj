@@ -49,10 +49,16 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorHandling\UnexpectedExceptionHandler.cs" />
     <Compile Include="InputActionInterfaceTests.cs" />
     <Compile Include="InputCollectorInterfaceTests.cs" />
+    <Compile Include="InputSimulatorApiTests.cs" />
+    <Compile Include="InputSimulatorApiWrapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

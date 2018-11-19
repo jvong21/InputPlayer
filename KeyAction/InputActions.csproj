@@ -40,6 +40,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\InputDown.cs" />
@@ -55,10 +58,17 @@
     <Compile Include="InputStrategies\ConsoleInput\ConsoleDownInputStrategy.cs" />
     <Compile Include="InputStrategies\ConsoleInput\ConsoleInputStrategyFactory.cs" />
     <Compile Include="InputStrategies\Exception\InputStrategyNotFoundException.cs" />
+    <Compile Include="InputStrategies\InputSimulatorApi\InputSimulatorApiWrapper.cs" />
     <Compile Include="InputStrategies\Interface\IInputStrategy.cs" />
     <Compile Include="InputStrategies\Interface\IInputStrategyFactory.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\InputUpToApplicationStrategy.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\InputDownToApplicationStrategy.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\InputToApplicationStrategyFactory.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\TargetApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

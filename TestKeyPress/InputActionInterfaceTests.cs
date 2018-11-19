@@ -6,11 +6,12 @@ using InputActions.InputPerformers;
 using InputActions.InputStrategies.Exception;
 using System.Collections.Generic;
 using System;
+using TestKeyAction.ErrorHandling;
 
 namespace TestKeyAction
 {
     [TestClass]
-    public class InputActionInterfaceTests
+    public class InputActionInterfaceTests : UnexpectedExceptionHandler
     {
         [TestMethod]
         public void InputAction_Runs_PerformInputs()
@@ -29,12 +30,7 @@ namespace TestKeyAction
             }
         }
 
-        private string GenerateUnexepctedExceptionMessage(System.Exception e)
-        {
-            return "Received an exception, although one was not expected: " 
-                + Environment.NewLine + e.Message 
-                + Environment.NewLine + e.StackTrace; 
-        }
+        
 
         private InputAction Create_InputAction_With_TestInputDownStrategyFactory()
         {

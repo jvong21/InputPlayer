@@ -4,6 +4,7 @@ using InputActions.InputCollectors.Interface;
 using InputActions.InputPerformers;
 using InputActions.InputStrategies.ConsoleInput;
 using InputActions.InputStrategies.Interface;
+using InputActions.InputStrategies.OutputToApplication;
 using System;
 
 namespace KeyPress
@@ -12,13 +13,13 @@ namespace KeyPress
     {
         static void Main(string[] args)
         {
-            ConsoleInput(); 
+            CalculatorInput(); 
         }
 
         public static void ConsoleInput()
         {
             // Collect inputs 
-            IInputCollector inputCollector = new ConsoleInputCollectorWithDelays();
+            IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
             InputQueue inputs = inputCollector.GenerateInputs();
 
             // Perform the inputs
@@ -26,6 +27,18 @@ namespace KeyPress
             InputAction inputAction = new InputAction(inputStrategyFactory);
             Console.WriteLine("--Writing Input From Keyboard to Keyboard--");
             inputAction.PeformInputs(inputs);
+        }
+
+        public static void CalculatorInput()
+        {
+            // Collect inputs 
+            IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
+            InputQueue inputs = inputCollector.GenerateInputs();
+
+            // Inputs to calculator
+            IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory();
+            InputAction inputAction = new InputAction(inputStrategyFactory);
+            inputAction.PeformInputs(inputs); 
         }
     }
 }
