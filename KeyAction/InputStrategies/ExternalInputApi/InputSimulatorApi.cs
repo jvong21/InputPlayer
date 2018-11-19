@@ -1,14 +1,15 @@
-﻿using System;
+﻿using InputActions.InputStrategies.ExternalInputApi.Interface;
+using System;
 using WindowsInput;
 using WindowsInput.Native;
 
-namespace InputActions.InputStrategies.InputSimulatorApi
+namespace InputActions.InputStrategies.ExternalInputApi
 {
-    public class InputSimulatorApiWrapper
+    public class InputSimulatorApi: IExternalInputApiWrapper
     {
         private InputSimulator InputSimulator => new InputSimulator(); 
 
-        public InputSimulatorApiWrapper()
+        public InputSimulatorApi()
         {
 
         }

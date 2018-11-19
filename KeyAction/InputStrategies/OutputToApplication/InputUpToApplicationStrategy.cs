@@ -1,5 +1,5 @@
 ﻿using InputActions.Data.Interface;
-using InputActions.InputStrategies.InputSimulatorApi;
+using InputActions.InputStrategies.ExternalInputApi.Interface;
 using InputActions.InputStrategies.Interface;
 using System.Threading.Tasks;
 
@@ -8,16 +8,17 @@ namespace InputActions.InputStrategies.OutputToApplication
     public class InputUpToApplicationStrategy : IInputStrategy
     {
         public IInput Input { get; private set; }
-        private InputSimulatorApiWrapper InputSimulator => new InputSimulatorApiWrapper(); 
+        private IExternalInputApiWrapper InputSimulator;
 
-        public InputUpToApplicationStrategy(IInput input)
+        public InputUpToApplicationStrategy(IInput input, IExternalInputApiWrapper externalInputApi)
         {
             Input = input;
+            InputSimulator = externalInputApi;
         }
 
         public void PeformInput()
         {
-            TargetApplication.FocusOnTargetApplication(); 
+            TargetZsnesApplication.FocusOnTargetApplication();
             Task.Delay(Input.InputDelayInMilliseconds);
             InputSimulator.Keyboard_KeyUp(Input.InputKey); 
         }

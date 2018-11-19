@@ -1,4 +1,5 @@
-﻿using InputActions.InputStrategies.InputSimulatorApi;
+﻿
+using InputActions.InputStrategies.ExternalInputApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TestKeyAction.ErrorHandling;
@@ -11,7 +12,7 @@ namespace TestKeyAction
         [TestMethod]
         public void KeyDown_Does_Not_Produce_Exception()
         {
-            InputSimulatorApiWrapper inputSimulator = GetEmptyInputSimulatorApiWrapper();
+            InputSimulatorApi inputSimulator = GetEmptyInputSimulatorApiWrapper();
 
             try
             {
@@ -26,7 +27,7 @@ namespace TestKeyAction
         [TestMethod]
         public void KeyUp_Does_Not_Produce_Exception()
         {
-            InputSimulatorApiWrapper inputSimulator = GetEmptyInputSimulatorApiWrapper();
+            InputSimulatorApi inputSimulator = GetEmptyInputSimulatorApiWrapper();
 
             try
             {
@@ -41,7 +42,7 @@ namespace TestKeyAction
         [TestMethod]
         public void KeyPress_Does_Not_Produce_Exception()
         {
-            InputSimulatorApiWrapper inputSimulator = GetEmptyInputSimulatorApiWrapper();
+            InputSimulatorApi inputSimulator = GetEmptyInputSimulatorApiWrapper();
 
             try
             {
@@ -56,16 +57,16 @@ namespace TestKeyAction
         [TestMethod]
         public void KeyPress_Produces_ArgumentException_When_Invalid_Key_Provided()
         {
-            InputSimulatorApiWrapper inputSimulator = GetEmptyInputSimulatorApiWrapper();
+            InputSimulatorApi inputSimulator = GetEmptyInputSimulatorApiWrapper();
 
             Action keyPressAction = delegate () { inputSimulator.Keyboard_KeyPress("AAFDAJKLDASJFKDASJKLFDSJAKL"); };
 
             Assert.ThrowsException<ArgumentException>(keyPressAction); 
         }
 
-        private InputSimulatorApiWrapper GetEmptyInputSimulatorApiWrapper()
+        private InputSimulatorApi GetEmptyInputSimulatorApiWrapper()
         {
-            return new InputSimulatorApiWrapper(); 
+            return new InputSimulatorApi(); 
         }
         
     }

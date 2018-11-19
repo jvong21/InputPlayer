@@ -3,6 +3,8 @@ using InputActions.InputCollectors.Collectors;
 using InputActions.InputCollectors.Interface;
 using InputActions.InputPerformers;
 using InputActions.InputStrategies.ConsoleInput;
+using InputActions.InputStrategies.ExternalInputApi;
+using InputActions.InputStrategies.ExternalInputApi.Interface;
 using InputActions.InputStrategies.Interface;
 using InputActions.InputStrategies.OutputToApplication;
 using System;
@@ -13,7 +15,7 @@ namespace KeyPress
     {
         static void Main(string[] args)
         {
-            CalculatorInput(); 
+            ExternalApplicationOutput(); 
         }
 
         public static void ConsoleInput()
@@ -29,14 +31,15 @@ namespace KeyPress
             inputAction.PeformInputs(inputs);
         }
 
-        public static void CalculatorInput()
+        public static void ExternalApplicationOutput()
         {
             // Collect inputs 
             IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
             InputQueue inputs = inputCollector.GenerateInputs();
 
             // Inputs to calculator
-            IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory();
+            IExternalInputApiWrapper externalInputApi = new InputSimulatorApi(); 
+            IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
             InputAction inputAction = new InputAction(inputStrategyFactory);
             inputAction.PeformInputs(inputs); 
         }

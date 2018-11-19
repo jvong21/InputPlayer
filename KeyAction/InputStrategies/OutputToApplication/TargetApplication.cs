@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
-    internal class TargetApplication
+    internal class TargetZsnesApplication
     {
         #region From https://docs.microsoft.com/en-us/dotnet/framework/winforms/how-to-simulate-mouse-and-keyboard-events-in-code
         // Get a handle to an application window.
@@ -18,21 +15,28 @@ namespace InputActions.InputStrategies.OutputToApplication
         // Activate an application window.
         [DllImport("USER32.DLL")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", EntryPoint = "FindWindowEx")]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
+        [DllImport("User32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam);
+
         #endregion
+        
 
         public static void FocusOnTargetApplication()
         {
-            // Get a handle to the Calculator application. The window class
-            // and window name were obtained using the Spy++ tool.
-            IntPtr targetApplicationHandle = FindWindow("CalcFrame", "Calculator");
+            Process zsnes = Process.GetProcessById(9804);
 
-            // Verify that Calculator is a running process.
-            if (targetApplicationHandle == IntPtr.Zero)
+            if(zsnes != null)
             {
-                throw new System.Exception("Application is not running"); 
+                SetForegroundWindow(zsnes.MainWindowHandle);
             }
-
-            SetForegroundWindow(targetApplicationHandle); 
+            else
+            {
+                Console.WriteLine("application not running");
+            }
         }
     }
 }
