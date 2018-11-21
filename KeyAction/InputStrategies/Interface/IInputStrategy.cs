@@ -4,7 +4,7 @@ namespace InputActions.InputStrategies.Interface
 {
     public interface IInputStrategy
     {
-        IInput Input { get; }
+        Input Input { get; }
         void PeformInput(); 
     }
 }

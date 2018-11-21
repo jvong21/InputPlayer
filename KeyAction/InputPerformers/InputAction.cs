@@ -18,7 +18,7 @@ namespace InputActions.InputPerformers
         {
             while(inputs.Inputs.Count > 0)
             {
-                IInput input = inputs.Inputs.Dequeue(); 
+                Input input = inputs.Inputs.Dequeue(); 
                 IInputStrategy inputStrategy = InputStrategyFactory.CreateInputStrategy(input);
                 inputStrategy.PeformInput(); 
             }

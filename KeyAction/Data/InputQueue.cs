@@ -5,9 +5,9 @@ namespace InputActions.Data
 {
     public class InputQueue
     {
-        public Queue<IInput> Inputs { get; private set;}
+        public Queue<Input> Inputs { get; private set;}
 
-        public InputQueue(Queue<IInput> inputs)
+        public InputQueue(Queue<Input> inputs)
         {
             Inputs = inputs; 
         }

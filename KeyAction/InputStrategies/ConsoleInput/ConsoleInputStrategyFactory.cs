@@ -8,7 +8,7 @@ namespace InputActions.InputStrategies.ConsoleInput
 {
     public class ConsoleInputStrategyFactory : IInputStrategyFactory
     {
-        public IInputStrategy CreateInputStrategy(IInput input)
+        public IInputStrategy CreateInputStrategy(Input input)
         {
             // TODO: Look up visitor pattern for this type of implementation 
             if(input is InputDown)

@@ -12,7 +12,7 @@ namespace InputActions.InputCollectors.Collectors
         {
             string inputString = ReadString();
             IList<string> inputsWithDelays = GenerateInputListWithDelays(inputString); 
-            Queue<IInput> inputQueue = BuildInputQueue(inputsWithDelays);
+            Queue<Input> inputQueue = BuildInputQueue(inputsWithDelays);
             InputQueue finalInputQueue = new InputQueue(inputQueue);
             return finalInputQueue;
         }
@@ -34,11 +34,11 @@ namespace InputActions.InputCollectors.Collectors
             return inputs; 
         }
 
-        private Queue<IInput> BuildInputQueue(IList<string> inputs)
+        private Queue<Input> BuildInputQueue(IList<string> inputs)
         {
             try
             {
-                Queue<IInput> finalInputQueue = new Queue<IInput>();
+                Queue<Input> finalInputQueue = new Queue<Input>();
                 for (int i = 0; i < inputs.Count; i++)
                 {
                     string[] inputAndDelay = inputs[i].Split('-');

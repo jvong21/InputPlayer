@@ -7,10 +7,10 @@ namespace InputActions.InputStrategies.OutputToApplication
 {
     public class InputUpToApplicationStrategy : IInputStrategy
     {
-        public IInput Input { get; private set; }
+        public Input Input { get; private set; }
         private IExternalInputApiWrapper InputSimulator;
 
-        public InputUpToApplicationStrategy(IInput input, IExternalInputApiWrapper externalInputApi)
+        public InputUpToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi)
         {
             Input = input;
             InputSimulator = externalInputApi;

@@ -4,6 +4,6 @@ namespace InputActions.InputStrategies.Interface
 {
     public interface IInputStrategyFactory
     {
-        IInputStrategy CreateInputStrategy(IInput input); 
+        IInputStrategy CreateInputStrategy(Input input); 
     }
 }

@@ -8,9 +8,9 @@ namespace InputActions.InputStrategies.ConsoleInput
 {
     public class ConsoleDownInputStrategy : IInputStrategy
     {
-        public IInput Input { get; private set; }
+        public Input Input { get; private set; }
 
-        public ConsoleDownInputStrategy(IInput input)
+        public ConsoleDownInputStrategy(Input input)
         {
             Input = input; 
         } 

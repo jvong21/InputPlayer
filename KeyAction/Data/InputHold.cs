@@ -1,4 +1,4 @@
-﻿using KeyPress.KeyActions.Data;
+﻿using InputActions.Data.Interface;
 
 namespace InputActions.Data
 {

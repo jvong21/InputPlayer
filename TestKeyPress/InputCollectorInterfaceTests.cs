@@ -40,17 +40,17 @@ namespace TestKeyAction
 
             public InputQueue GenerateInputs()
             {
-                Queue<IInput> inputs = GenerateDummyInputs();
+                Queue<Input> inputs = GenerateDummyInputs();
                 InputQueue inputQueue = new InputQueue(inputs);
                 return inputQueue;
             }
 
-            private Queue<IInput> GenerateDummyInputs()
+            private Queue<Input> GenerateDummyInputs()
             {
-                Queue<IInput> dummyInputs = new Queue<IInput>();
+                Queue<Input> dummyInputs = new Queue<Input>();
                 for(int i = 1; i <= numberOfDummyInputs; i++)
                 {
-                    IInput inputA = new InputDown("A", 0);
+                    Input inputA = new InputDown("A", 0);
                     dummyInputs.Enqueue(inputA); 
                 }
                 return dummyInputs;

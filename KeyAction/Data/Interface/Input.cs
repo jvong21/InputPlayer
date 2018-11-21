@@ -1,8 +1,6 @@
-﻿using InputActions.Data.Interface;
-
-namespace KeyPress.KeyActions.Data
+﻿namespace InputActions.Data.Interface
 {
-    public abstract class Input: IInput
+    public abstract class Input
     {
         public string InputKey { get; private set; }
         public int InputDelayInMilliseconds { get; private set; }
@@ -13,5 +11,6 @@ namespace KeyPress.KeyActions.Data
             InputDelayInMilliseconds = inputDelay;
         }
 
+        
     }
 }

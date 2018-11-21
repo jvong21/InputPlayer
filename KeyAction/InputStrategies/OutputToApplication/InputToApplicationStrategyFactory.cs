@@ -16,7 +16,7 @@ namespace InputActions.InputStrategies.OutputToApplication
             ExternalInputApi = externalInputApi; 
         }
 
-        public IInputStrategy CreateInputStrategy(IInput input)
+        public IInputStrategy CreateInputStrategy(Input input)
         {
             if(input is InputDown)
             {

@@ -40,8 +40,8 @@ namespace TestKeyAction
 
         private InputQueue Create_InputQueue_With_DownInputs()
         {
-            Queue<IInput> inputQueue = new Queue<IInput>();
-            IInput downInput = CreateTestInputDown_No_Input_Delay(); 
+            Queue<Input> inputQueue = new Queue<Input>();
+            Input downInput = CreateTestInputDown_No_Input_Delay(); 
             inputQueue.Enqueue(downInput); 
             return new InputQueue(inputQueue); 
         }
@@ -51,7 +51,7 @@ namespace TestKeyAction
         public void InputStrategyFactory_Returns_TestInputDownStrategy_Type()
         {
             IInputStrategyFactory testStrategyFactory = CreateTestInputStrategyFactory_WithInputDownOnly();
-            IInput inputDown = CreateTestInputDown_No_Input_Delay(); 
+            Input inputDown = CreateTestInputDown_No_Input_Delay(); 
             IInputStrategy inputStrategy = testStrategyFactory.CreateInputStrategy(inputDown);
 
             Assert.IsInstanceOfType(inputStrategy, typeof(TestInputDownStrategy)); 
@@ -61,7 +61,7 @@ namespace TestKeyAction
         public void InputStrategyFactory_Throws_InputStrategyNotFoundException()
         {
             IInputStrategyFactory testStrategyFactory = CreateTestInputStrategyFactory_WithInputDownOnly();
-            IInput inputUp = CreateTestInputUp_No_Input_Delay();
+            Input inputUp = CreateTestInputUp_No_Input_Delay();
             System.Action inputStrategyExecute = delegate() { testStrategyFactory.CreateInputStrategy(inputUp); };
 
             Assert.ThrowsException<InputStrategyNotFoundException>(inputStrategyExecute); 
@@ -85,7 +85,7 @@ namespace TestKeyAction
 
         internal class TestInputDownStrategy : IInputStrategy
         {
-            public IInput Input => new InputDown("a", 0);
+            public Input Input => new InputDown("a", 0);
 
             public void PeformInput()
             {
@@ -95,7 +95,7 @@ namespace TestKeyAction
 
         internal class TestInputStrategyFactory : IInputStrategyFactory
         {
-            public IInputStrategy CreateInputStrategy(IInput input)
+            public IInputStrategy CreateInputStrategy(Input input)
             {
                 if(input is InputDown)
                 {
