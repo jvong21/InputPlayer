@@ -20,7 +20,7 @@ namespace InputActions.InputCollectors.Collectors
         private string ReadString()
         {
             Console.WriteLine("=== Specify input key with type and delay in ms ===");
-            Console.WriteLine("=== Example: A-PRESS-100 B-HOLD-100 C-KEYUP-100 D-KEYDOWN-100 ===");
+            Console.WriteLine("=== Example: A-PRESS-100 B-HOLD-100-100 [fourth option is hold duration] C-KEYUP-100 D-KEYDOWN-100 ===");
             string input = Console.ReadLine();
             return input;
         }
