@@ -45,14 +45,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\InputPress.cs" />
     <Compile Include="Data\InputDown.cs" />
     <Compile Include="Data\InputHold.cs" />
     <Compile Include="Data\InputUp.cs" />
     <Compile Include="Data\Interface\Input.cs" />
     <Compile Include="Data\InputQueue.cs" />
+    <Compile Include="InputCollectors\Collectors\ConsoleInputCollectorAllInputTypes.cs" />
+    <Compile Include="InputCollectors\Collectors\ConsoleInputPressCollectorWithDelay.cs" />
     <Compile Include="InputCollectors\Collectors\ConsoleInputCollectorWithDelay.cs" />
     <Compile Include="InputCollectors\Interface\IInputCollector.cs" />
     <Compile Include="InputCollectors\Collectors\ConsoleInputCollector.cs" />
+    <Compile Include="InputPerformers\InputActionToApplication.cs" />
     <Compile Include="InputPerformers\Interface\IInputAction.cs" />
     <Compile Include="InputPerformers\InputAction.cs" />
     <Compile Include="InputStrategies\ConsoleInput\ConsoleDownInputStrategy.cs" />
@@ -63,6 +67,9 @@
     <Compile Include="InputStrategies\ExternalInputApi\Interface\IExternalInputApiWrapper.cs" />
     <Compile Include="InputStrategies\Interface\IInputStrategy.cs" />
     <Compile Include="InputStrategies\Interface\IInputStrategyFactory.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\InputPressToApplicationStrategy.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\InputHoldToApplicationStrategy.cs" />
+    <Compile Include="InputStrategies\OutputToApplication\InputToApplicationStrategy.cs" />
     <Compile Include="InputStrategies\OutputToApplication\InputUpToApplicationStrategy.cs" />
     <Compile Include="InputStrategies\OutputToApplication\InputDownToApplicationStrategy.cs" />
     <Compile Include="InputStrategies\OutputToApplication\InputToApplicationStrategyFactory.cs" />

@@ -26,7 +26,7 @@ namespace InputActions.InputStrategies.ExternalInputApi
         
         public void Keyboard_KeyPress(string key)
         {
-            TargetZsnesApplication.InputSomething(key);
+            TargetSnesApplication.InputSomething(key);
         }
         
     }

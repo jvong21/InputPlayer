@@ -3,6 +3,7 @@ using InputActions.Data.Interface;
 using InputActions.InputStrategies.Exception;
 using InputActions.InputStrategies.ExternalInputApi.Interface;
 using InputActions.InputStrategies.Interface;
+using System.Threading;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
@@ -13,7 +14,7 @@ namespace InputActions.InputStrategies.OutputToApplication
 
         public InputToApplicationStrategyFactory(IExternalInputApiWrapper externalInputApi)
         {
-            ExternalInputApi = externalInputApi; 
+            ExternalInputApi = externalInputApi;
         }
 
         public IInputStrategy CreateInputStrategy(Input input)
@@ -26,6 +27,16 @@ namespace InputActions.InputStrategies.OutputToApplication
             if(input is InputUp)
             {
                 return new InputUpToApplicationStrategy(input, ExternalInputApi); 
+            }
+
+            if(input is InputHold)
+            {
+                return new InputHoldToApplicationStrategy(input, ExternalInputApi); 
+            }
+
+            if (input is InputPress)
+            {
+                return new InputPressToApplicationStrategy(input, ExternalInputApi); 
             }
 
             throw new InputStrategyNotFoundException(); 

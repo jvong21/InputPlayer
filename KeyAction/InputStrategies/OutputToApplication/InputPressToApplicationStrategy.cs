@@ -4,16 +4,16 @@ using System.Threading;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
-    public class InputUpToApplicationStrategy : InputToApplicationStrategy
+    public class InputPressToApplicationStrategy : InputToApplicationStrategy
     {
-        public InputUpToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi): base(input, externalInputApi)
+        public InputPressToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi): base(input, externalInputApi)
         {
         }
 
         protected override void PerformInput_Internal()
         {
             Thread.Sleep(Input.InputDelayInMilliseconds);
-            InputSimulator.Keyboard_KeyUp(Input.InputKey);
+            InputSimulator.Keyboard_KeyPress(Input.InputKey);
         }
     }
 }

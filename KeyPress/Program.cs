@@ -34,14 +34,17 @@ namespace KeyPress
         public static void ExternalApplicationOutput()
         {
             // Collect inputs 
-            IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
+            // IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
+            // IInputCollector inputCollector = new ConsoleInputPressCollectorWithDelays();
+            IInputCollector inputCollector = new ConsoleInputCollectorAllInputTypes();
             InputQueue inputs = inputCollector.GenerateInputs();
-
-            // Inputs to calculator
-            // IExternalInputApiWrapper externalInputApi = new SendMessageApi(); // new InputSimulatorApi(); 
+            
+            // IExternalInputApiWrapper externalInputApi = new SendMessageApi();
             IExternalInputApiWrapper externalInputApi = new InputSimulatorApi(); 
             IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
-            InputAction inputAction = new InputAction(inputStrategyFactory);
+            // InputAction inputAction = new InputAction(inputStrategyFactory);
+            InputActionToApplication inputAction = new InputActionToApplication(inputStrategyFactory);
+            Console.WriteLine("--Performing inputs to application soon--");
             inputAction.PeformInputs(inputs); 
         }
     }

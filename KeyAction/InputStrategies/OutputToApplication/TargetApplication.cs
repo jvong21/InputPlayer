@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
-    internal class TargetZsnesApplication
+    internal class TargetSnesApplication
     {
         #region From https://docs.microsoft.com/en-us/dotnet/framework/winforms/how-to-simulate-mouse-and-keyboard-events-in-code
         // Get a handle to an application window.
@@ -31,11 +31,9 @@ namespace InputActions.InputStrategies.OutputToApplication
 
         public static void FocusOnTargetApplication()
         {
-            Thread.Sleep(1000);
             if (ZSNES != null)
             {
                 SetForegroundWindow(ZSNES.MainWindowHandle);
-                
             }
             else
             {
