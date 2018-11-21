@@ -22,7 +22,7 @@ namespace InputActions.InputStrategies.OutputToApplication
         {
             TargetZsnesApplication.FocusOnTargetApplication();
             Thread.Sleep(Input.InputDelayInMilliseconds);
-            InputSimulator.Keyboard_KeyPress(Input.InputKey);
+            InputSimulator.Keyboard_KeyDown(Input.InputKey);
         }
 
     }

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\InputDown.cs" />
+    <Compile Include="Data\InputHold.cs" />
     <Compile Include="Data\InputUp.cs" />
     <Compile Include="Data\Interface\IInput.cs" />
     <Compile Include="Data\Interface\Input.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="InputStrategies\ConsoleInput\ConsoleDownInputStrategy.cs" />
     <Compile Include="InputStrategies\ConsoleInput\ConsoleInputStrategyFactory.cs" />
     <Compile Include="InputStrategies\Exception\InputStrategyNotFoundException.cs" />
+    <Compile Include="InputStrategies\ExternalInputApi\SendMessage.cs" />
     <Compile Include="InputStrategies\ExternalInputApi\InputSimulatorApi.cs" />
     <Compile Include="InputStrategies\ExternalInputApi\Interface\IExternalInputApiWrapper.cs" />
     <Compile Include="InputStrategies\Interface\IInputStrategy.cs" />

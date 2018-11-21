@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
@@ -23,20 +24,30 @@ namespace InputActions.InputStrategies.OutputToApplication
         private static extern int SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam);
 
         #endregion
-        
+
+        // Needs to be updated b/c process ID may change
+        public static Process ZSNES => Process.GetProcessById(2980);
+
 
         public static void FocusOnTargetApplication()
         {
-            Process zsnes = Process.GetProcessById(9804);
-
-            if(zsnes != null)
+            Thread.Sleep(1000);
+            if (ZSNES != null)
             {
-                SetForegroundWindow(zsnes.MainWindowHandle);
+                SetForegroundWindow(ZSNES.MainWindowHandle);
+                
             }
             else
             {
                 Console.WriteLine("application not running");
             }
+        }
+
+        const int thing = 00400000; 
+
+        public static void InputSomething(string key)
+        {
+            SendMessage(ZSNES.MainWindowHandle, thing, 0, key); 
         }
     }
 }

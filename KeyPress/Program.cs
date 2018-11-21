@@ -38,6 +38,7 @@ namespace KeyPress
             InputQueue inputs = inputCollector.GenerateInputs();
 
             // Inputs to calculator
+            // IExternalInputApiWrapper externalInputApi = new SendMessageApi(); // new InputSimulatorApi(); 
             IExternalInputApiWrapper externalInputApi = new InputSimulatorApi(); 
             IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
             InputAction inputAction = new InputAction(inputStrategyFactory);
