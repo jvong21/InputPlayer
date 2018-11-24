@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestKeyAction", "TestKeyPre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputActions", "KeyAction\InputActions.csproj", "{B8DF0CCE-FFC7-46C2-88C9-90E28B7D7771}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputCapturePlayUi", "InputCapturePlayUi\InputCapturePlayUi.csproj", "{598A5C7C-D37D-4734-82C8-FA4C8E879D4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B8DF0CCE-FFC7-46C2-88C9-90E28B7D7771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8DF0CCE-FFC7-46C2-88C9-90E28B7D7771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8DF0CCE-FFC7-46C2-88C9-90E28B7D7771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{598A5C7C-D37D-4734-82C8-FA4C8E879D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598A5C7C-D37D-4734-82C8-FA4C8E879D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598A5C7C-D37D-4734-82C8-FA4C8E879D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598A5C7C-D37D-4734-82C8-FA4C8E879D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

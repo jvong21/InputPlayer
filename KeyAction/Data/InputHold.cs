@@ -2,7 +2,7 @@
 
 namespace InputActions.Data
 {
-    class InputHold : Input
+    public class InputHold : Input
     {
         public int HoldInMilliseconds { get; private set; }
 
