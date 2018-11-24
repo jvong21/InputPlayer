@@ -10,42 +10,62 @@ namespace InputActions.InputStrategies.OutputToApplication
         #region From https://docs.microsoft.com/en-us/dotnet/framework/winforms/how-to-simulate-mouse-and-keyboard-events-in-code
         // Get a handle to an application window.
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
-        public static extern IntPtr FindWindow(string lpClassName,
+        private static extern IntPtr FindWindow(string lpClassName,
             string lpWindowName);
 
         // Activate an application window.
         [DllImport("USER32.DLL")]
-        public static extern bool SetForegroundWindow(IntPtr hWnd);
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll", EntryPoint = "FindWindowEx")]
-        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+        private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 
         [DllImport("User32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
+        
+
         #endregion
 
-        // Needs to be updated b/c process ID may change
-        public static Process ZSNES => Process.GetProcessById(2980);
+        public static Process[] Snes9XProcesses => Process.GetProcessesByName("snes9x-x64");
 
 
         public static void FocusOnTargetApplication()
         {
-            if (ZSNES != null)
-            {
-                SetForegroundWindow(ZSNES.MainWindowHandle);
-            }
-            else
-            {
-                Console.WriteLine("application not running");
-            }
+            IntPtr snes9x = GetTopSnes9XHandle();
+            SetForegroundWindow(snes9x);
         }
+        
 
-        const int thing = 00400000; 
-
-        public static void InputSomething(string key)
+        public static bool ApplicationIsActivated()
         {
-            SendMessage(ZSNES.MainWindowHandle, thing, 0, key); 
+            IntPtr foregroundWindow = GetForegroundWindow();
+            if (foregroundWindow == IntPtr.Zero)
+            {
+                return false;       // No window is currently activated
+            }
+            return foregroundWindow == GetTopSnes9XHandle();
         }
+
+        private static IntPtr GetTopSnes9XHandle()
+        {
+            if (Snes9XProcesses.Length > 0)
+            {
+                Process snes9x = Snes9XProcesses[0];
+                if (snes9x != null)
+                {
+                    return snes9x.MainWindowHandle;
+                }
+            }
+
+            throw new System.Exception("Snes9X is not running"); 
+        }
+
+        
     }
 }
