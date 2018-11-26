@@ -1,12 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InputActions.Data;
+using InputActions.InputCollectors.Interface;
+using InputActions.InputPerformers;
+using InputActions.InputStrategies.ExternalInputApi;
+using InputActions.InputStrategies.ExternalInputApi.Interface;
+using InputActions.InputStrategies.Interface;
+using InputActions.InputStrategies.OutputToApplication;
+using InputCapturePlayUi.Data;
+using InputCapturePlayUi.InputActionsApi.InputCollector;
+using System.Windows.Forms;
 
 namespace InputCapturePlayUi.InputActionsApi
 {
-    public class InputActionApiFacade
+    public class DataGridInputAction: IFormsInputActionFacade
     {
+
+        private InputQueue _currentInputQueue; 
+
+        public DataGridInputAction()
+        {
+
+        }
+        
+        public void LoadInput(DataGridView dataGridView, IFramesToMsConverter framesToMsConverter)
+        {
+            IInputCollector inputCollector = new DataGridInputCollector(dataGridView, framesToMsConverter);
+            _currentInputQueue = inputCollector.GenerateInputs();
+            
+        }
+
+        public void PlayInput()
+        {
+            IExternalInputApiWrapper externalInputApi = new InputSimulatorApi();
+            IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
+            InputActionToApplication inputAction = new InputActionToApplication(inputStrategyFactory);
+            inputAction.PeformInputs(_currentInputQueue);
+        }
     }
 }

@@ -46,12 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\FramesToMsConverter.cs" />
+    <Compile Include="Data\GenerateInput.cs" />
+    <Compile Include="Data\InputTypes.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputActionsApi\IFormsInputActionFacade.cs" />
     <Compile Include="InputActionsApi\InputActionApiFacade.cs" />
     <Compile Include="InputActionsApi\InputCollector\DataGridInputCollector.cs" />
     <Compile Include="Program.cs" />

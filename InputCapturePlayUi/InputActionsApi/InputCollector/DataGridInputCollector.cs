@@ -1,11 +1,9 @@
 ﻿using InputActions.Data;
 using InputActions.Data.Interface;
 using InputActions.InputCollectors.Interface;
+using InputCapturePlayUi.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InputCapturePlayUi.InputActionsApi.InputCollector
@@ -13,11 +11,15 @@ namespace InputCapturePlayUi.InputActionsApi.InputCollector
     public class DataGridInputCollector : IInputCollector
     {
 
-        private DataGridView CurrentDataGridView; 
+        private DataGridView _currentDataGridView;
+        private InputTypeToInputActionTypeFactory _inputFactory;
+        private IFramesToMsConverter _framesToMsConverter;
 
-        public DataGridInputCollector(DataGridView dataGridView)
+        public DataGridInputCollector(DataGridView dataGridView, IFramesToMsConverter framesToMsConverter)
         {
-            CurrentDataGridView = dataGridView; 
+            _currentDataGridView = dataGridView;
+            _framesToMsConverter = framesToMsConverter;
+            _inputFactory = new InputTypeToInputActionTypeFactory();
         }
 
         public InputQueue GenerateInputs()
@@ -33,10 +35,10 @@ namespace InputCapturePlayUi.InputActionsApi.InputCollector
             Queue<Input> generatedInputQueue = new Queue<Input>();
 
             for (int rowNumber = 0; 
-                rowNumber < CurrentDataGridView.Rows.Count - 1; // Last row is always empty 
+                rowNumber < _currentDataGridView.Rows.Count - 1; // Last row is always empty 
                 rowNumber++)
             {
-                var row = CurrentDataGridView.Rows[rowNumber];
+                var row = _currentDataGridView.Rows[rowNumber];
 
                 Input currentInput = GenerateInputFromRow(row);
                 generatedInputQueue.Enqueue(currentInput);
@@ -51,30 +53,22 @@ namespace InputCapturePlayUi.InputActionsApi.InputCollector
             var inputTypeCell = row.Cells[1];
             var delayCell = row.Cells[2];
             var holdCell = row.Cells[3];
+
             string key = keyCell.Value.ToString();
-            string inputType = inputTypeCell.Value.ToString();
-            int delay = Int32.Parse(delayCell.Value.ToString());
-            
 
-            Input currentInput;
+            FormsInputTypes inputType= (FormsInputTypes)inputTypeCell.Value; 
 
-            // TODO: Create a proper factory for generating inputs from datagridview. Standardize the inputType
-            switch (inputType.ToLower())
-            {
-                case "press":
-                    currentInput = new InputPress(key, delay);
-                    break;
-                case "hold":
-                    int hold = Int32.Parse(holdCell.Value.ToString());
-                    currentInput = InputHold.CreateInputHoldWithHoldInMilliseconds(key, delay, hold);
-                    break;
-                case "down":
-                    currentInput = new InputDown(key, delay);
-                    break;
-                default:
-                    currentInput = new InputUp(key, delay);
-                    break;
-            }
+            int delayInFrames = delayCell.Value != null ? Int32.Parse(delayCell.Value.ToString()) : 0;
+            int delay = _framesToMsConverter.ConvertFramesToMs(delayInFrames); 
+
+            int holdInFrames = holdCell.Value != null ? Int32.Parse(holdCell.Value.ToString()) : 0;
+            int hold = _framesToMsConverter.ConvertFramesToMs(holdInFrames); 
+
+            Input currentInput = _inputFactory.CreateInputFromFormsInputType(
+                inputType, 
+                key, 
+                delay,
+                hold); 
 
             return currentInput; 
         }

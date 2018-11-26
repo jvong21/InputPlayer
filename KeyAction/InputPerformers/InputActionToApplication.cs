@@ -12,7 +12,7 @@ namespace InputActions.InputPerformers
     {
         private IInputStrategyFactory InputStrategyFactory;
         private readonly int WAIT_BEFORE_FOCUS = 1000; 
-        private readonly int WAIT_BEFORE_INPUTTING_AGAIN = 2000; 
+        private readonly int WAIT_BEFORE_INPUTTING_AGAIN = 3000; 
 
         public InputActionToApplication(IInputStrategyFactory inputStrategyFactory)
         {

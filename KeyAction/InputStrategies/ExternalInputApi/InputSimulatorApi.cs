@@ -40,6 +40,7 @@ namespace InputActions.InputStrategies.ExternalInputApi
             InputSimulator.Keyboard.KeyDown(keyCode);
             Thread.Sleep(10); 
             InputSimulator.Keyboard.KeyUp(keyCode);
+            
         }
 
         private VirtualKeyCode GetCleanVirtualKeyCode(string key)

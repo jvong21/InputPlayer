@@ -1,31 +1,35 @@
-﻿using InputActions.Data;
-using InputActions.InputCollectors.Interface;
-using InputActions.InputPerformers;
-using InputActions.InputStrategies.ExternalInputApi;
-using InputActions.InputStrategies.ExternalInputApi.Interface;
-using InputActions.InputStrategies.Interface;
-using InputActions.InputStrategies.OutputToApplication;
-using InputCapturePlayUi.InputActionsApi.InputCollector;
+﻿
+using InputCapturePlayUi.Data;
+using InputCapturePlayUi.InputActionsApi;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InputCapturePlayUi
 {
     public partial class Form1 : Form
     {
-        
+
+        private IFormsInputActionFacade _dataGridInputAction;
+        private IFramesToMsConverter _framesToMsConverter; 
 
         public Form1()
         {
             InitializeComponent();
-             
+            InitializeDataGridColumns(); 
+            _dataGridInputAction = new DataGridInputAction();
+            _framesToMsConverter = new FramesToMsConverter60fps(); 
+        }
+
+        private void InitializeDataGridColumns()
+        {
+            this.InputType.ValueType = typeof(FormsInputTypes);
+            this.InputType.CellTemplate.ValueType = typeof(FormsInputTypes);
+            this.InputType.DataSource = new List<FormsInputTypes>() {
+                FormsInputTypes.Charge,
+                FormsInputTypes.HoldDown,
+                FormsInputTypes.Press,
+                FormsInputTypes.Release };
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,26 +44,18 @@ namespace InputCapturePlayUi
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            // TODO: Abstract this whole process to a different object so the form logic can be separate from using the InputAction API
-            // TODO: Create validation for the data grid values before they get collected
-            //// TODO: Make sure the column inputs are limited to types only 
-            //// TODO: Lock the Input Type column to only allow Hold, Press, KeyUp, or KeyDown 
-            IInputCollector inputCollector = new DataGridInputCollector(this.dataGridView1);
-            InputQueue currentInputQueue = inputCollector.GenerateInputs();
-            IExternalInputApiWrapper externalInputApi = new InputSimulatorApi();
-            IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
-            InputActionToApplication inputAction = new InputActionToApplication(inputStrategyFactory);
-            inputAction.PeformInputs(currentInputQueue);
+            _dataGridInputAction.LoadInput(this.dataGridView1, _framesToMsConverter);
+            _dataGridInputAction.PlayInput();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void saveInputFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // TODO: Review how to seralize objects to json, and save it 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // TODO: Review how to load a file with json, and serialize to object 
         }
     }
 }
