@@ -8,13 +8,12 @@ namespace InputActions.InputCollectors.Collectors
 {
     public class ConsoleInputCollectorAllInputTypes : IInputCollector
     {
-        public InputQueue GenerateInputs()
+        public IInputQueue GenerateInputs()
         {
             string inputString = ReadString();
-            IList<string> inputsWithDelays = GenerateInputListWithDelays(inputString); 
-            Queue<Input> inputQueue = BuildInputQueue(inputsWithDelays);
-            InputQueue finalInputQueue = new InputQueue(inputQueue);
-            return finalInputQueue;
+            IList<string> inputsWithDelays = GenerateInputListWithDelays(inputString);
+            IInputQueue inputQueue = BuildInputQueue(inputsWithDelays);
+            return inputQueue;
         }
 
         private string ReadString()
@@ -34,11 +33,11 @@ namespace InputActions.InputCollectors.Collectors
             return inputs; 
         }
 
-        private Queue<Input> BuildInputQueue(IList<string> inputs)
+        private IInputQueue BuildInputQueue(IList<string> inputs)
         {
             try
             {
-                Queue<Input> finalInputQueue = new Queue<Input>();
+                IInputQueue finalInputQueue = new InputQueue();
                 for (int i = 0; i < inputs.Count; i++)
                 {
                     string[] inputParts = inputs[i].Split('-');

@@ -15,8 +15,8 @@ namespace TestKeyAction
         {
             int correctNumberOfInputs = 5; 
             TestInputCollector testInputCollector = new TestInputCollector(correctNumberOfInputs);
-            InputQueue genereatedInputQueueFromTest = testInputCollector.GenerateInputs(); 
-            Assert.AreEqual(correctNumberOfInputs, genereatedInputQueueFromTest.Inputs.Count);
+            IInputQueue genereatedInputQueueFromTest = testInputCollector.GenerateInputs(); 
+            Assert.AreEqual(correctNumberOfInputs, genereatedInputQueueFromTest.Count);
         }
 
         [TestMethod]
@@ -25,8 +25,8 @@ namespace TestKeyAction
             int correctNumberOfInputs = 5;
             int differentNumberOfInputs = 4; 
             TestInputCollector testInputCollector = new TestInputCollector(correctNumberOfInputs);
-            InputQueue genereatedInputQueueFromTest = testInputCollector.GenerateInputs();
-            Assert.AreNotEqual(differentNumberOfInputs, genereatedInputQueueFromTest.Inputs.Count);
+            IInputQueue genereatedInputQueueFromTest = testInputCollector.GenerateInputs();
+            Assert.AreNotEqual(differentNumberOfInputs, genereatedInputQueueFromTest.Count);
         }
 
         internal class TestInputCollector : IInputCollector
@@ -38,16 +38,15 @@ namespace TestKeyAction
                 this.numberOfDummyInputs = numberOfDummyInputs; 
             }
 
-            public InputQueue GenerateInputs()
+            public IInputQueue GenerateInputs()
             {
-                Queue<Input> inputs = GenerateDummyInputs();
-                InputQueue inputQueue = new InputQueue(inputs);
-                return inputQueue;
+                IInputQueue inputs = GenerateDummyInputs();
+                return inputs;
             }
 
-            private Queue<Input> GenerateDummyInputs()
+            private IInputQueue GenerateDummyInputs()
             {
-                Queue<Input> dummyInputs = new Queue<Input>();
+                IInputQueue dummyInputs = new InputQueue();
                 for(int i = 1; i <= numberOfDummyInputs; i++)
                 {
                     Input inputA = new InputDown("A", 0);

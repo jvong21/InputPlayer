@@ -17,7 +17,7 @@ namespace TestKeyAction
         public void InputAction_Runs_PerformInputs()
         {
             InputAction inputAction = Create_InputAction_With_TestInputDownStrategyFactory();
-            InputQueue inputQueue = Create_InputQueue_With_DownInputs();
+            IInputQueue inputQueue = Create_InputQueue_With_DownInputs();
             
             // Tests that this runs without an exception. However, if there is an exception, it will be caught and the test will fail. 
             try
@@ -38,12 +38,12 @@ namespace TestKeyAction
             return new InputAction(testStrategyFactory);
         }
 
-        private InputQueue Create_InputQueue_With_DownInputs()
+        private IInputQueue Create_InputQueue_With_DownInputs()
         {
-            Queue<Input> inputQueue = new Queue<Input>();
+            IInputQueue inputQueue = new InputQueue();
             Input downInput = CreateTestInputDown_No_Input_Delay(); 
             inputQueue.Enqueue(downInput); 
-            return new InputQueue(inputQueue); 
+            return inputQueue; 
         }
 
 

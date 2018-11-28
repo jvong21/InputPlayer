@@ -18,8 +18,8 @@ namespace InputCapturePlayUiTests
             DataGridView properDummyDataGrid = CreateProperDummyDataGrid();
             IFramesToMsConverter framesToMsConverter = new FramesToMsConverter60fps(); 
             DataGridInputCollector dataGridInputCollector = new DataGridInputCollector(properDummyDataGrid, framesToMsConverter);
-            InputQueue inputQueue = dataGridInputCollector.GenerateInputs();
-            Assert.AreEqual(inputQueue.Inputs.Count, 4); 
+            IInputQueue inputQueue = dataGridInputCollector.GenerateInputs();
+            Assert.AreEqual(inputQueue.Count, 4); 
         }
 
         [TestMethod]
@@ -28,8 +28,8 @@ namespace InputCapturePlayUiTests
             DataGridView properDummyDataGrid = CreateProperDummyDataGrid();
             IFramesToMsConverter framesToMsConverter = new FramesToMsConverter60fps();
             DataGridInputCollector dataGridInputCollector = new DataGridInputCollector(properDummyDataGrid, framesToMsConverter);
-            InputQueue inputQueue = dataGridInputCollector.GenerateInputs();
-            Input firstInput = inputQueue.Inputs.Dequeue();
+            IInputQueue inputQueue = dataGridInputCollector.GenerateInputs();
+            Input firstInput = inputQueue.Dequeue();
             Assert.IsTrue(firstInput.InputKey.Equals("a")
                 && firstInput.InputDelayInMilliseconds.Equals(16)
                 && firstInput.GetType().Equals(typeof(InputHold))

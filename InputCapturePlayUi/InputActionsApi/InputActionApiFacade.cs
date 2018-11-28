@@ -1,4 +1,5 @@
 ﻿using InputActions.Data;
+using InputActions.Data.Interface;
 using InputActions.InputCollectors.Interface;
 using InputActions.InputPerformers;
 using InputActions.InputStrategies.ExternalInputApi;
@@ -14,7 +15,7 @@ namespace InputCapturePlayUi.InputActionsApi
     public class DataGridInputAction: IFormsInputActionFacade
     {
 
-        private InputQueue _currentInputQueue; 
+        private IInputQueue _currentInputQueue; 
 
         public DataGridInputAction()
         {

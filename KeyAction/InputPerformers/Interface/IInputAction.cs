@@ -1,8 +1,10 @@
 ﻿using InputActions.Data;
+using InputActions.Data.Interface;
+
 namespace InputActions.InputPerformers.Interface
 {
     internal interface IInputAction
     {
-        void PeformInputs(InputQueue inputs);
+        void PeformInputs(IInputQueue inputs);
     }
 }

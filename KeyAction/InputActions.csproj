@@ -49,6 +49,7 @@
     <Compile Include="Data\InputDown.cs" />
     <Compile Include="Data\InputHold.cs" />
     <Compile Include="Data\InputUp.cs" />
+    <Compile Include="Data\Interface\IInputQueue.cs" />
     <Compile Include="Data\Interface\Input.cs" />
     <Compile Include="Data\InputQueue.cs" />
     <Compile Include="InputCollectors\Collectors\ConsoleInputCollectorAllInputTypes.cs" />

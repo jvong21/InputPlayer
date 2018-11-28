@@ -14,11 +14,11 @@ namespace InputActions.InputPerformers
             InputStrategyFactory = inputStrategyFactory;
         }
 
-        public void PeformInputs(InputQueue inputs)
+        public void PeformInputs(IInputQueue inputs)
         {
-            while(inputs.Inputs.Count > 0)
+            while(inputs.Count > 0)
             {
-                Input input = inputs.Inputs.Dequeue(); 
+                Input input = inputs.Dequeue(); 
                 IInputStrategy inputStrategy = InputStrategyFactory.CreateInputStrategy(input);
                 inputStrategy.PeformInput(); 
             }

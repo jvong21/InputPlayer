@@ -1,4 +1,5 @@
 ﻿using InputActions.Data;
+using InputActions.Data.Interface;
 using InputActions.InputCollectors.Collectors;
 using InputActions.InputCollectors.Interface;
 using InputActions.InputPerformers;
@@ -22,7 +23,7 @@ namespace KeyPress
         {
             // Collect inputs 
             IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
-            InputQueue inputs = inputCollector.GenerateInputs();
+            IInputQueue inputs = inputCollector.GenerateInputs();
 
             // Perform the inputs
             IInputStrategyFactory inputStrategyFactory = new ConsoleInputStrategyFactory();
@@ -37,7 +38,7 @@ namespace KeyPress
             // IInputCollector inputCollector = new ConsoleInputDownCollectorWithDelays();
             // IInputCollector inputCollector = new ConsoleInputPressCollectorWithDelays();
             IInputCollector inputCollector = new ConsoleInputCollectorAllInputTypes();
-            InputQueue inputs = inputCollector.GenerateInputs();
+            IInputQueue inputs = inputCollector.GenerateInputs();
             
             // IExternalInputApiWrapper externalInputApi = new SendMessageApi();
             IExternalInputApiWrapper externalInputApi = new InputSimulatorApi(); 

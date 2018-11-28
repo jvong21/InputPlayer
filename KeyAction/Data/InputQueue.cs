@@ -3,13 +3,25 @@ using System.Collections.Generic;
 
 namespace InputActions.Data
 {
-    public class InputQueue
+    public class InputQueue: Queue<Input>, IInputQueue
     {
-        public Queue<Input> Inputs { get; private set;}
-
-        public InputQueue(Queue<Input> inputs)
+        public InputQueue(ICollection<Input> inputs): base(inputs)
         {
-            Inputs = inputs; 
+        }
+
+        public InputQueue(): base()
+        {
+
+        }
+
+        public new Input Dequeue()
+        {
+            return base.Dequeue(); 
+        }
+
+        public new void Enqueue(Input input)
+        {
+            base.Enqueue(input); 
         }
     }
 }

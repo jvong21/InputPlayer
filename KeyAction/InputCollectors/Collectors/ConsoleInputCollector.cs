@@ -8,12 +8,11 @@ namespace InputActions.InputCollectors.Collectors
 {
     public class ConsoleInputCollector : IInputCollector
     {
-        public InputQueue GenerateInputs()
+        public IInputQueue GenerateInputs()
         {
             string inputString = ReadString();
-            Queue<Input> inputQueue = BuildInputStack(inputString);
-            InputQueue finalInputQueue = new InputQueue(inputQueue); 
-            return finalInputQueue; 
+            IInputQueue inputQueue = BuildInputStack(inputString);
+            return inputQueue; 
         }
 
         private string ReadString()
@@ -23,11 +22,11 @@ namespace InputActions.InputCollectors.Collectors
             return input;
         }
 
-        private Queue<Input> BuildInputStack(string input)
+        private IInputQueue BuildInputStack(string input)
         {
             try
             {
-                Queue<Input> finalInputQueue = new Queue<Input>(); 
+                IInputQueue finalInputQueue = new InputQueue(); 
                 for (int i = 0; i < input.Length; i++)
                 {
                     finalInputQueue.Enqueue(new InputDown(input.Substring(i, 1), 0)); 

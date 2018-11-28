@@ -22,17 +22,15 @@ namespace InputCapturePlayUi.InputActionsApi.InputCollector
             _inputFactory = new InputTypeToInputActionTypeFactory();
         }
 
-        public InputQueue GenerateInputs()
+        public IInputQueue GenerateInputs()
         {
-            // TODO: Create a unit test for this object and method
-            Queue<Input> generatedInputQueue = GenerateInputQueue(); 
-            InputQueue finalInputQueue = new InputQueue(generatedInputQueue);
+            IInputQueue finalInputQueue = GenerateInputQueue();
             return finalInputQueue; 
         }
 
-        private Queue<Input> GenerateInputQueue()
+        private IInputQueue GenerateInputQueue()
         {
-            Queue<Input> generatedInputQueue = new Queue<Input>();
+            IInputQueue generatedInputQueue = new InputQueue();
 
             for (int rowNumber = 0; 
                 rowNumber < _currentDataGridView.Rows.Count - 1; // Last row is always empty 

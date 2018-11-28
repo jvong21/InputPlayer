@@ -19,12 +19,12 @@ namespace InputActions.InputPerformers
             InputStrategyFactory = inputStrategyFactory;
         }
 
-        public void PeformInputs(InputQueue inputs)
+        public void PeformInputs(IInputQueue inputs)
         {
             Thread.Sleep(WAIT_BEFORE_FOCUS); // Wait before focusing so console input is not confused with target application input
             TargetSnesApplication.FocusOnTargetApplication();
-            Queue<Input> currentInputQueue = inputs.Inputs;
-            Queue<Input> newInputQueue = new Queue<Input>(); 
+            IInputQueue currentInputQueue = inputs;
+            IInputQueue newInputQueue = new InputQueue(); 
             while (TargetSnesApplication.ApplicationIsActivated()) // While target is focused
             {
                 Input input = currentInputQueue.Dequeue();
@@ -38,7 +38,7 @@ namespace InputActions.InputPerformers
             }
         }
 
-        private void RebuildInputQueue(Queue<Input> newInputQueue, Queue<Input> currentInputQueue)
+        private void RebuildInputQueue(IInputQueue newInputQueue, IInputQueue currentInputQueue)
         {
             Thread.Sleep(WAIT_BEFORE_INPUTTING_AGAIN); // Wait before performing inputs again
             while (newInputQueue.Count > 0)
