@@ -1,9 +1,12 @@
 ﻿using InputActions.Data.Interface;
+using System.Runtime.Serialization;
 
 namespace InputActions.Data
 {
+    [DataContract]
     public class InputHold : Input
     {
+        [DataMember]
         public int HoldInMilliseconds { get; private set; }
 
         public InputHold(string key, int delayInMilliseconds) : base(key, delayInMilliseconds)

@@ -41,6 +41,8 @@ namespace InputCapturePlayUi
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveInputFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +55,7 @@ namespace InputCapturePlayUi
             this.InputType,
             this.Delay,
             this.HoldDuration});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 43);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 24);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(444, 302);
             this.dataGridView1.TabIndex = 0;
@@ -68,7 +70,7 @@ namespace InputCapturePlayUi
             // 
             // InputType
             // 
-            this.InputType.HeaderText = "InputType";
+            this.InputType.HeaderText = "Input Type";
             this.InputType.Name = "InputType";
             this.InputType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
@@ -80,14 +82,14 @@ namespace InputCapturePlayUi
             // 
             // HoldDuration
             // 
-            this.HoldDuration.HeaderText = "HoldDuration";
+            this.HoldDuration.HeaderText = "Charge Duration";
             this.HoldDuration.Name = "HoldDuration";
             this.HoldDuration.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 351);
+            this.button1.Location = new System.Drawing.Point(12, 332);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(444, 38);
             this.button1.TabIndex = 1;
@@ -127,22 +129,26 @@ namespace InputCapturePlayUi
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Load Input File";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveInputFileToolStripMenuItem
             // 
             this.saveInputFileToolStripMenuItem.Name = "saveInputFileToolStripMenuItem";
-            this.saveInputFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveInputFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveInputFileToolStripMenuItem.Text = "Save Input File";
             this.saveInputFileToolStripMenuItem.Click += new System.EventHandler(this.saveInputFileToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 401);
+            this.ClientSize = new System.Drawing.Size(474, 383);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
@@ -172,6 +178,8 @@ namespace InputCapturePlayUi
         private System.Windows.Forms.DataGridViewComboBoxColumn InputType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Delay;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoldDuration;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

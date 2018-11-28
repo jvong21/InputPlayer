@@ -1,27 +1,27 @@
 ﻿using InputActions.Data.Interface;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 
 namespace InputActions.Data
 {
-    public class InputQueue: Queue<Input>, IInputQueue
+
+    [DataContract]
+    [KnownType(typeof(Input))]
+    [KnownType(typeof(InputDown))]
+    [KnownType(typeof(InputUp))]
+    [KnownType(typeof(InputPress))]
+    [KnownType(typeof(InputHold))]
+    public class InputQueue : Queue<Input>, IInputQueue
     {
-        public InputQueue(ICollection<Input> inputs): base(inputs)
+
+        public InputQueue(IList<Input> inputs): base(inputs)
         {
         }
 
         public InputQueue(): base()
         {
 
-        }
-
-        public new Input Dequeue()
-        {
-            return base.Dequeue(); 
-        }
-
-        public new void Enqueue(Input input)
-        {
-            base.Enqueue(input); 
         }
     }
 }

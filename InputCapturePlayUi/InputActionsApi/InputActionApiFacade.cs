@@ -15,18 +15,81 @@ namespace InputCapturePlayUi.InputActionsApi
     public class DataGridInputAction: IFormsInputActionFacade
     {
 
-        private IInputQueue _currentInputQueue; 
+        private IInputQueue _currentInputQueue;
 
         public DataGridInputAction()
         {
-
         }
-        
+
+        public IInputQueue LoadedInputQueue
+        {
+            get {
+
+                if (_currentInputQueue.Count <= 0)
+                {
+                    return new InputQueue();
+                }
+
+                return _currentInputQueue;
+            }
+        }
+
         public void LoadInput(DataGridView dataGridView, IFramesToMsConverter framesToMsConverter)
         {
             IInputCollector inputCollector = new DataGridInputCollector(dataGridView, framesToMsConverter);
             _currentInputQueue = inputCollector.GenerateInputs();
             
+        }
+
+        public void LoadInputFromQueueToGrid(IInputQueue inputQueue, DataGridView dataGridView, IFramesToMsConverter framesToMsConverter)
+        {
+            _currentInputQueue = inputQueue;
+            Input currentInput;
+            while (inputQueue.Count > 0)
+            {
+                currentInput = inputQueue.Dequeue();
+
+                DataGridViewRow dataRow = CreateDataGridViewRow();
+
+                FormsInputTypes inputType = GetInputType(currentInput); 
+
+                dataRow.Cells[0].Value = currentInput.InputKey;
+                dataRow.Cells[1].Value = inputType;
+                dataRow.Cells[2].Value = framesToMsConverter.ConvertMsToFrames(currentInput.InputDelayInMilliseconds);
+                dataRow.Cells[3].Value = inputType.Equals(FormsInputTypes.Charge) ?
+                    framesToMsConverter.ConvertMsToFrames(((InputHold)currentInput).HoldInMilliseconds).ToString()
+                    : null;
+
+                dataGridView.Rows.Add(dataRow); 
+            }
+        }
+
+        private DataGridViewRow CreateDataGridViewRow()
+        {
+            DataGridViewRow dataRow = new DataGridViewRow();
+            dataRow.Cells.Add(new DataGridViewTextBoxCell());
+            dataRow.Cells.Add(new DataGridViewTextBoxCell());
+            dataRow.Cells.Add(new DataGridViewTextBoxCell());
+            dataRow.Cells.Add(new DataGridViewTextBoxCell());
+
+            return dataRow; 
+        }
+
+        private FormsInputTypes GetInputType(Input input)
+        {
+            if (input is InputDown)
+            {
+                return FormsInputTypes.HoldDown;
+            }
+            else if (input is InputUp)
+            {
+                return FormsInputTypes.Release;
+            }
+            else if (input is InputPress)
+            {
+                return FormsInputTypes.Press;
+            }
+            return FormsInputTypes.Charge;
         }
 
         public void PlayInput()
