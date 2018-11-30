@@ -3,18 +3,17 @@ using InputActions.Data.Interface;
 using InputActions.InputPerformers.Interface;
 using InputActions.InputStrategies.Interface;
 using InputActions.InputStrategies.OutputToApplication;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace InputActions.InputPerformers
 {
-    public class InputActionToApplication : IInputAction
+    public class InputActionToSnes9xApplication : IInputAction
     {
         private IInputStrategyFactory InputStrategyFactory;
         private readonly int WAIT_BEFORE_FOCUS = 1000; 
         private readonly int WAIT_BEFORE_INPUTTING_AGAIN = 3000; 
 
-        public InputActionToApplication(IInputStrategyFactory inputStrategyFactory)
+        public InputActionToSnes9xApplication(IInputStrategyFactory inputStrategyFactory)
         {
             InputStrategyFactory = inputStrategyFactory;
         }

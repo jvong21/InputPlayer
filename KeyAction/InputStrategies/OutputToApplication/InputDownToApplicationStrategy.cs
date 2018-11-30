@@ -4,13 +4,13 @@ using System.Threading;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
-    public class InputDownToApplicationStrategy : InputToApplicationStrategy
+    internal class InputDownToApplicationStrategy : InputToApplicationStrategy
     {
-        public InputDownToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi): base(input, externalInputApi)
+        internal InputDownToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi): base(input, externalInputApi)
         {
         }
 
-        protected override void PerformInput_Internal()
+        protected internal override void PerformInput_Internal()
         {
             Thread.Sleep(Input.InputDelayInMilliseconds);
             InputSimulator.Keyboard_KeyDown(Input.InputKey);

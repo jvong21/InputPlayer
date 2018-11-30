@@ -1,6 +1,7 @@
 ﻿using InputActions.Data;
 using InputActions.Data.Interface;
 using InputCapturePlayUi.InputFileIo.Interface;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Json;
 
@@ -10,19 +11,27 @@ namespace InputCapturePlayUi.InputFileIo
     {
         public IInputQueue CreateInputQueueFromFile(string fileLocation)
         {
-            // TODO: Add steps for error handling
-            // Get file from file location 
-                // If location doesn't exist, throw an error 
-            // Read as string
-            // if empty, pass
-            // Otherwise, seralize as IInputQueue
-            // If errors during serialization, throw an error
             IInputQueue inputQueue = new InputQueue();
 
-            using (StreamReader inputFileReader = new StreamReader(fileLocation))
+            try
             {
-                DataContractJsonSerializer inputSerializer = new DataContractJsonSerializer(typeof(InputQueue));
-                inputQueue = (InputQueue)inputSerializer.ReadObject(inputFileReader.BaseStream); 
+                using (StreamReader inputFileReader = new StreamReader(fileLocation))
+                {
+                    DataContractJsonSerializer inputSerializer = new DataContractJsonSerializer(typeof(InputQueue));
+                    inputQueue = (InputQueue)inputSerializer.ReadObject(inputFileReader.BaseStream);
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                throw new FileNotFoundException($"The file at {fileLocation} was not found.");
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                throw new DirectoryNotFoundException($"The directory at {fileLocation} was not found.");
+            }
+            catch (Exception e)
+            {
+                throw new IOException("There was a problem with attempting to read the file.", e);
             }
 
             return inputQueue; 

@@ -44,7 +44,7 @@ namespace KeyPress
             IExternalInputApiWrapper externalInputApi = new InputSimulatorApi(); 
             IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
             // InputAction inputAction = new InputAction(inputStrategyFactory);
-            InputActionToApplication inputAction = new InputActionToApplication(inputStrategyFactory);
+            InputActionToSnes9xApplication inputAction = new InputActionToSnes9xApplication(inputStrategyFactory);
             Console.WriteLine("--Performing inputs to application soon--");
             inputAction.PeformInputs(inputs); 
         }

@@ -38,7 +38,7 @@ namespace InputActions.InputStrategies.ExternalInputApi
 
             // This is inconsistent too
             InputSimulator.Keyboard.KeyDown(keyCode);
-            Thread.Sleep(10); 
+            Thread.Sleep(6); 
             InputSimulator.Keyboard.KeyUp(keyCode);
             
         }

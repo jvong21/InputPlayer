@@ -4,12 +4,12 @@ using InputActions.InputStrategies.Interface;
 
 namespace InputActions.InputStrategies.OutputToApplication
 {
-    public abstract class InputToApplicationStrategy : IInputStrategy
+    internal abstract class InputToApplicationStrategy : IInputStrategy
     {
         public Input Input { get; private set; }
         protected IExternalInputApiWrapper InputSimulator;
 
-        public InputToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi)
+        internal InputToApplicationStrategy(Input input, IExternalInputApiWrapper externalInputApi)
         {
             Input = input;
             InputSimulator = externalInputApi;
@@ -20,6 +20,6 @@ namespace InputActions.InputStrategies.OutputToApplication
             PerformInput_Internal(); 
         }
 
-        protected abstract void PerformInput_Internal(); 
+        protected internal abstract void PerformInput_Internal(); 
     }
 }

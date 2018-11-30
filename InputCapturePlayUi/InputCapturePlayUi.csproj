@@ -50,6 +50,7 @@
     <Compile Include="Data\FramesToMsConverter.cs" />
     <Compile Include="Data\GenerateInput.cs" />
     <Compile Include="Data\InputTypes.cs" />
+    <Compile Include="InputFileIo\Error\Exceptions.cs" />
     <Compile Include="InputFileIo\InputFileReader.cs" />
     <Compile Include="InputFileIo\InputFileWriter.cs" />
     <Compile Include="InputFileIo\Interface\IInputFileReader.cs" />
@@ -96,10 +97,7 @@
       <Name>InputActions</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Errors\ErrorView\" />
-    <Folder Include="InputActionsApi\InputActionPlayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ReadMe.txt" />
   </ItemGroup>

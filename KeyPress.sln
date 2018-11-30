@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyPress", "KeyPress\KeyPress.csproj", "{642C6B51-288A-4346-9432-C5B0DD56D53C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestKeyAction", "TestKeyPress\TestKeyAction.csproj", "{9E5CB8D3-81D9-47F2-A1DD-4A47D844EB2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputActions", "KeyAction\InputActions.csproj", "{B8DF0CCE-FFC7-46C2-88C9-90E28B7D7771}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{642C6B51-288A-4346-9432-C5B0DD56D53C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{642C6B51-288A-4346-9432-C5B0DD56D53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{642C6B51-288A-4346-9432-C5B0DD56D53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{642C6B51-288A-4346-9432-C5B0DD56D53C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E5CB8D3-81D9-47F2-A1DD-4A47D844EB2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E5CB8D3-81D9-47F2-A1DD-4A47D844EB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5CB8D3-81D9-47F2-A1DD-4A47D844EB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU

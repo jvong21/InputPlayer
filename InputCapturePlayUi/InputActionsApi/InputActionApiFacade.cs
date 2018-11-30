@@ -96,7 +96,7 @@ namespace InputCapturePlayUi.InputActionsApi
         {
             IExternalInputApiWrapper externalInputApi = new InputSimulatorApi();
             IInputStrategyFactory inputStrategyFactory = new InputToApplicationStrategyFactory(externalInputApi);
-            InputActionToApplication inputAction = new InputActionToApplication(inputStrategyFactory);
+            InputActionToSnes9xApplication inputAction = new InputActionToSnes9xApplication(inputStrategyFactory);
             inputAction.PeformInputs(_currentInputQueue);
         }
     }
